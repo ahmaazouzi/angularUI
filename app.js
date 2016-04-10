@@ -138,7 +138,7 @@ app5.controller('userCtrl' , function ($scope, $uibModal, getLocalStorage) {
 			$scope.user.push({
 				flName: userInfo.flName,
 				jobTitle: userInfo.jobTitle,
-				date: userInfo.dt.toDateString(),
+				date: userInfo.dt,
 				gender: userInfo.gender
 			});
 			console.log('User Saved')
