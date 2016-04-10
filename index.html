@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html ng-app='app5' ng-cloak>
+<head>
+<title>Angular Forms</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<style>
+	[ng\:cloak], [ng-cloak], .ng-cloak {
+		display: none;
+	}
+	table{
+		width: 400px;
+		text-align: left;
+		border: 2px solid black;
+		padding: 10px;
+	}
+	input.ng-dirty.ng-invalid {
+		border.color: red;
+	}
+
+}
+	</style>
+</head>
+<body>
+
+
+<div class="container" ng-controller="userCtrl">
+	
+<style>
+  .full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
+  .grid{
+  	width: 700px;
+  }
+</style>
+<div>
+	<form name='userForm' ng-submit='saveUser(userInfo)'>
+
+
+
+
+<!-- ================================================================================ -->
+
+
+
+<div>
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">User Successfully Added ...</h3>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+</div>
+
+
+
+
+
+
+
+<!-- ================================================================================ -->		
+	<h4>Name:</h4> 
+	<div class="row">
+		<div class="col-md-6">
+				<input type="text" class="form-control" ng-model='userInfo.flName'>
+		</div>
+	</div>
+<!-- ================================================================================ -->
+
+	<h4>Job Title:</h4> 
+	<div class="row">
+		<div class="col-md-6">		
+		<select name='delivery' class="form-control" ng-model='userInfo.jobTitle' ng-required='true'>
+			<option value='Web Designer' class="form-control">Web Designer</option>
+			<option value='Junior Web Developer' class="form-control">Junior Web Developer</option>
+			<option value='Senior Web Developer' class="form-control">Senior Web Developer</option>
+			<option value='Team Manager' class="form-control">Team Manager</option>
+			<option value='Marketer' class="form-control">Marketer</option>
+		</select>
+		</div>
+	</div>	
+<!-- ================================================================================ -->
+	<h4>Date:</h4>    
+    <div class="row">
+      <div class="col-md-6">
+        <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" 
+          ng-model="userInfo.dt" is-open="popup1.opened" datepicker-options="dateOptions"  close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+    </div>
+</div>
+<!-- ================================================================================ -->
+	<h4>Gender:</h4> 
+	<div class="row">
+		<div class="col-md-6">
+
+    			<label class="radio-inline">
+      			<input type="radio" name="optradio" ng-model='userInfo.gender' value='Male'>Male</label>
+    			<label class="radio-inline">
+     			<input type="radio" name="optradio" ng-model='userInfo.gender' value='Female'>Female</label>
+    			<label class="radio-inline">
+      			<input type="radio" name="optradio" ng-model='userInfo.gender' value='Other'>Other</label>
+
+
+		</div>
+
+	</div>
+</br>
+	<input class='btn btn-default' type='submit' ng-click="open()" value='Save' ng-disabled='userForm.$invalid' />
+</br>
+</br>
+	</form>
+	<h4>Available Users:</h4>
+    <div>
+      <div id="grid1" ui-grid="{ data: user }" class="grid"></div>
+    </div> 
+
+</div> 
+
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js'></script>
+<script src="ui-bootstrap-tpls-1.3.1.min.js"></script>
+<script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css">
+
+
+<script src='app.js'></script>
+</body>
+
+</html>
