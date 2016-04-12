@@ -1,26 +1,12 @@
+// app module
 var app5 = angular.module('app5', ['ngAnimate','ui.bootstrap', 'ui.grid',
  'storageService']);
 
-app5.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
-  $scope.ok = function () {
-    $uibModalInstance.close(); 
-  };
-  $scope.cancel = function () {
-    $uibModalInstance.dismiss('cancel');
-  };
-});
+
 
 app5.controller('userCtrl',function ($scope, $uibModal, getLocalStorage) {
 
-	$scope.user = [
-		{flName: 'Ahmed Maazouzi',
-		jobTitle: 'Junior Web Developer',
-		date: "10-April-2016",
-		gender: 'Male'}
-	];
-
-
-
+  // angularUI datepicker options
   $scope.inlineOptions = {
     customClass: getDayClass,
     minDate: new Date(),
@@ -106,24 +92,7 @@ app5.controller('userCtrl',function ($scope, $uibModal, getLocalStorage) {
     return '';
   }
 
-
-  	$scope.saveUser = function(userInfo){
-
-		if($scope.userForm.$valid){
-			$scope.user.push({
-				flName: userInfo.flName,
-				jobTitle: userInfo.jobTitle,
-				date: userInfo.dt,
-				gender: userInfo.gender
-			});
-			console.log('User Saved')
-		}
-		else{
-			console.log('Error: Couldn\'d Save User')
-		}
-	}
-
- 
+  	// create/save user data
 	$scope.users = getLocalStorage.getUsers();
 	$scope.addUser = function(userInfo) {
         $scope.users.push({flName: userInfo.flName,
@@ -135,11 +104,10 @@ app5.controller('userCtrl',function ($scope, $uibModal, getLocalStorage) {
         $scope.newUser = '';
         };
 
-
+   // modal 
   $scope.animationsEnabled = true;
 
   $scope.open = function (size) {
-
     var modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'myModalContent.html',
@@ -150,10 +118,20 @@ app5.controller('userCtrl',function ($scope, $uibModal, getLocalStorage) {
 });
 
 
+// Modal instance controller
+app5.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
+  $scope.ok = function () {
+    $uibModalInstance.close(); 
+  };
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
 
+
+// local storage service
 var storageService = angular.module('storageService', []);
 storageService.factory('getLocalStorage', function() {
-
 var userList = {};
 return {
     list: userList,

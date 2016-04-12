@@ -1,0 +1,29 @@
+[ng\:cloak], [ng-cloak], .ng-cloak {
+	display: none;
+}
+table{
+	width: 400px;
+	text-align: left;
+	border: 2px solid black;
+	padding: 10px;
+}
+
+input.ng-dirty.ng-invalid {
+	border.color: red;
+	}
+
+}
+
+.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+}
+.partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+}
+.grid{
+  	width: 700px;
+}

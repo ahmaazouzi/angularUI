@@ -4,53 +4,15 @@
 <head>
 <title>Angular Forms</title>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<style>
-	[ng\:cloak], [ng-cloak], .ng-cloak {
-		display: none;
-	}
-	table{
-		width: 400px;
-		text-align: left;
-		border: 2px solid black;
-		padding: 10px;
-	}
-	input.ng-dirty.ng-invalid {
-		border.color: red;
-	}
-
-}
-	</style>
+<link rel="stylesheet" href="styles.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
-
 <div class="container" ng-controller="userCtrl">
-	
-<style>
-  .full button span {
-    background-color: limegreen;
-    border-radius: 32px;
-    color: black;
-  }
-  .partially button span {
-    background-color: orange;
-    border-radius: 32px;
-    color: black;
-  }
-  .grid{
-  	width: 700px;
-  }
-</style>
 <div>
+
 	<form name='userForm' ng-submit='addUser(userInfo)'>
-
-
-
-
-<!-- ================================================================================ -->
-
-
 
 <div>
     <script type="text/ng-template" id="myModalContent.html">
@@ -64,21 +26,15 @@
     </script>
 
 </div>
-
-
-
-
-
-
-
-<!-- ================================================================================ -->		
+		
 	<h4>Name:</h4> 
 	<div class="row">
 		<div class="col-md-6">
-				<input type="text" class="form-control" ng-model='userInfo.flName'>
+				<input type="text" name='flName' class="form-control" ng-model='userInfo.flName' ng-required='true' ng-pattern="/^[a-zA-Z-' ]+$/" ng-minlength='2'>
+				<p ng-show='userForm.flName.$error.pattern'></br>Must Enter a Number, Street, and Street Type (ex. 123 Main St.)</p>
 		</div>
 	</div>
-<!-- ================================================================================ -->
+
 
 	<h4>Job Title:</h4> 
 	<div class="row">
@@ -92,13 +48,13 @@
 		</select>
 		</div>
 	</div>	
-<!-- ================================================================================ -->
+
 	<h4>Date:</h4>    
     <div class="row">
       <div class="col-md-6">
         <p class="input-group">
           <input type="text" class="form-control" uib-datepicker-popup="{{format}}" 
-          ng-model="userInfo.dt" is-open="popup1.opened" datepicker-options="dateOptions"  close-text="Close"/>
+          ng-model="userInfo.dt" is-open="popup1.opened" datepicker-options="dateOptions"  close-text="Close" ng-required='true'/>
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
@@ -106,7 +62,7 @@
       </div>
     </div>
 </div>
-<!-- ================================================================================ -->
+
 	<h4>Gender:</h4> 
 	<div class="row">
 		<div class="col-md-6">
@@ -139,9 +95,6 @@
 <script src="ui-bootstrap-tpls-1.3.1.min.js"></script>
 <script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css">
-
-
 <script src='app.js'></script>
 </body>
-
 </html>
