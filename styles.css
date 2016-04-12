@@ -9,7 +9,7 @@ table{
 }
 
 input.ng-dirty.ng-invalid {
-	border.color: red;
+	border-color: red;
 	}
 
 }
@@ -26,4 +26,7 @@ input.ng-dirty.ng-invalid {
 }
 .grid{
   	width: 700px;
+}
+.text-error{
+	color: red;
 }

@@ -31,8 +31,9 @@
 	<div class="row">
 		<div class="col-md-6">
 				<input type="text" name='flName' class="form-control" ng-model='userInfo.flName' ng-required='true' ng-pattern="/^[a-zA-Z-' ]+$/">
+				<p class="text-error" ng-show='userForm.flName.$dirty && userForm.flName.$error.required'>Must Enter a Name</p>
 				<p ng-show='userForm.flName.$error.pattern'></br>Enter a Valid Name</p>
-				<p ng-show='userForm.flName.$error.required'></br>Must Enter a Name</p>
+				
 		</div>
 	</div>
 
@@ -80,7 +81,7 @@
 
 	</div>
 </br>
-	<input class='btn btn-default' type='submit' ng-click="open()" value='Save' ng-disabled='userForm.$invalid' />
+	<input class='btn btn-default' type='submit' ng-click="open()" value='Save' ng-disabled='userForm.$invalid'/>
 </br>
 </br>
 	</form>
