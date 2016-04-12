@@ -31,8 +31,8 @@
 	<div class="row">
 		<div class="col-md-6">
 				<input type="text" name='flName' class="form-control" ng-model='userInfo.flName' ng-required='true' ng-pattern="/^[a-zA-Z-' ]+$/">
-				<p class="text-error" ng-show='userForm.flName.$dirty && userForm.flName.$error.required'>Must Enter a Name</p>
-				<p ng-show='userForm.flName.$error.pattern'></br>Enter a Valid Name</p>
+				<p class="text-error" ng-show='userForm.flName.$touched && userForm.flName.$error.required'>Must Enter a Name</p>
+				<p class="text-error" ng-show='userForm.flName.$error.pattern'>Enter a Valid Name</p>
 				
 		</div>
 	</div>
@@ -48,6 +48,7 @@
 			<option value='Team Manager' class="form-control">Team Manager</option>
 			<option value='Marketer' class="form-control">Marketer</option>
 		</select>
+		<p class="text-error" ng-show='userForm.jobTitle.$touched && userForm.jobTitle.$error.required'>Must Choose a Job Title</p>
 		</div>
 	</div>	
 
@@ -55,12 +56,13 @@
     <div class="row">
       <div class="col-md-6">
         <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" 
+          <input name='date' type="text" class="form-control" uib-datepicker-popup="{{format}}" 
           ng-model="userInfo.dt" is-open="popup1.opened" datepicker-options="dateOptions"  close-text="Close" ng-required='true'/>
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </p>
+        <p class="text-error" ng-show='userForm.date.$touched && userForm.date.$error.required'>Must Enter a Valid Date</p>
       </div>
     </div>
 </div>
@@ -75,10 +77,8 @@
      			<input type="radio" name="optradio" ng-model='userInfo.gender' value='Female'>Female</label>
     			<label class="radio-inline">
       			<input type="radio" name="optradio" ng-model='userInfo.gender' value='Other'>Other</label>
-
-
+      			
 		</div>
-
 	</div>
 </br>
 	<input class='btn btn-default' type='submit' ng-click="open()" value='Save' ng-disabled='userForm.$invalid'/>
