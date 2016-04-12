@@ -20,6 +20,7 @@
 
 }
 	</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -42,7 +43,7 @@
   }
 </style>
 <div>
-	<form name='userForm' ng-submit='saveUser(userInfo)'>
+	<form name='userForm' ng-submit='addUser(userInfo)'>
 
 
 
@@ -128,7 +129,7 @@
 	</form>
 	<h4>Available Users:</h4>
     <div>
-      <div id="grid1" ui-grid="{ data: user }" class="grid"></div>
+      <div id="grid1" ui-grid="{ data: users }" class="grid"></div>
     </div> 
 
 </div> 

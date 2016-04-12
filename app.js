@@ -1,33 +1,17 @@
-// var app5 = angular.module('app5', []);
-// app5.controller('userCtrl', function($scope){
-// 	$scope.user = [
-// 		{fName: 'Derek',
-// 		lName: 'banas',
-// 		subscribe: 'Subscribe',
-// 		delivery: 'Email'}
-// 	];
-
-// 	$scope.saveUser = function(userInfo){
-// 		if($scope.userForm.$valid){
-// 			$scope.user.push({
-// 				fName: userInfo.fName,
-// 				lName: userInfo.lName,
-// 				street: userInfo.street,
-// 				subscribe: userInfo.subscribe,
-// 				delivery: userInfo.delivery
-// 			});
-// 			console.log('User Saved')
-// 		}
-// 		else{
-// 			console.log('Error: Couldn\'d Save User')
-// 		}
-// 	}
-
-// });
 var app5 = angular.module('app5', ['ngAnimate','ui.bootstrap', 'ui.grid',
  'storageService']);
-//================================================================================ 
-app5.controller('userCtrl' , function ($scope, $uibModal, getLocalStorage) {
+
+app5.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
+  $scope.ok = function () {
+    $uibModalInstance.close(); 
+  };
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
+
+app5.controller('userCtrl',function ($scope, $uibModal, getLocalStorage) {
+
 	$scope.user = [
 		{flName: 'Ahmed Maazouzi',
 		jobTitle: 'Junior Web Developer',
@@ -35,17 +19,8 @@ app5.controller('userCtrl' , function ($scope, $uibModal, getLocalStorage) {
 		gender: 'Male'}
 	];
 
-//================================================================================ 
-	// $scope.user = getLocalStorage.getUsers();
-	// $scope.addUser = function()
-	// 	{flName: 'Ahmed Maazouzi',
-	// 	jobTitle: 'Junior Web Developer',
-	// 	date: "10-April-2016",
-	// 	gender: 'Male'}
-	// ];
 
 
-//================================================================================ 
   $scope.inlineOptions = {
     customClass: getDayClass,
     minDate: new Date(),
@@ -131,14 +106,14 @@ app5.controller('userCtrl' , function ($scope, $uibModal, getLocalStorage) {
     return '';
   }
 
-//================================================================================ 
+
   	$scope.saveUser = function(userInfo){
 
 		if($scope.userForm.$valid){
 			$scope.user.push({
 				flName: userInfo.flName,
 				jobTitle: userInfo.jobTitle,
-				date: userInfo.dt.toDateString(),
+				date: userInfo.dt,
 				gender: userInfo.gender
 			});
 			console.log('User Saved')
@@ -147,7 +122,18 @@ app5.controller('userCtrl' , function ($scope, $uibModal, getLocalStorage) {
 			console.log('Error: Couldn\'d Save User')
 		}
 	}
-//================================================================================ 
+
+ 
+	$scope.users = getLocalStorage.getUsers();
+	$scope.addUser = function(userInfo) {
+        $scope.users.push({flName: userInfo.flName,
+        					jobTitle: userInfo.jobTitle,
+        					date: userInfo.dt.toDateString(),
+        					gender: userInfo.gender
+       						 });
+        getLocalStorage.updateUsers($scope.users);
+        $scope.newUser = '';
+        };
 
 
   $scope.animationsEnabled = true;
@@ -161,26 +147,8 @@ app5.controller('userCtrl' , function ($scope, $uibModal, getLocalStorage) {
       size: size,
     });
   };
-
-
-
-//================================================================================ 
-
 });
 
-
-
-app5.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
-
-
-  $scope.ok = function () {
-    $uibModalInstance.close(); 
-  };
-
-  $scope.cancel = function () {
-    $uibModalInstance.dismiss('cancel');
-  };
-});
 
 
 var storageService = angular.module('storageService', []);
